@@ -27,7 +27,7 @@ module.exports = ({ applicationServer }, { routesFolder }) => {
                 .split('.')
                 .shift()
                 .toLocaleLowerCase();
-            applicationServer.use(`/${plural(routeName)}`, require(`${routesDir}/${routeName}`));    
+            applicationServer.use(`/${plural(routeName)}`, require(`${routesDir}\\${routeName}\\${routeName}.routes.js`));    
         });
     } else {
         logger.info('Routes folder is not found!');
