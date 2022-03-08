@@ -1,9 +1,18 @@
 const mongoose = require('mongoose');
 const _= require('lodash');
 const logger = require('../../../shared/lib/winston/logger.winston');
+const {STORE_CONNECTION_TIMEOUT} = require('../../../shared/utils/defaults.utils');
+const {DatabaseError} = require('../../../shared/errors/databaseError.error');
+
 
 const clients = {};
 let connectionTimeout;
+
+function throwTimeoutError() {
+    connectionTimeout = setTimeout(() => {
+        throw new DatabaseError();
+    }, STORE_CONNECTION_TIMEOUT);
+}
 
 function instanceEventListeners({ conn }) {
     conn.on('connected', () => {

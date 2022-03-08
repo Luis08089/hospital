@@ -1,11 +1,17 @@
-const { Router } = require('express');
+const { Router } = require("express");
 
+const validateRequestMiddleware = require("../../../shared/Middlewares/validateRequest.middleware");
+const doctorSchema = require("./doctor.schemaValid");
+const docCont = require("./doctorControler.doctor");
 
 module.exports = () => {
-    const router = Router();
+  const router = Router();
 
-    router.put('/doctors/insert', (req,res) => {
+  router.post(
+    "/",
+    validateRequestMiddleware(doctorSchema),
+    docCont.registerDoctor
+  );
 
-    });
-    return router;
-}
+  return router;
+};
