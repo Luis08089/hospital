@@ -13,5 +13,10 @@ module.exports = () => {
     docCont.registerDoctor
   );
 
+  router.post(
+    "/create",
+    docCont.registrarSeeder
+    );
+
   return router;
 };

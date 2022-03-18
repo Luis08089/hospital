@@ -1,4 +1,4 @@
-const { badRequest, notFound, serviceUnavailable } = require('../../utils/httpStatusCodes.utils');
+const { badRequest, notFound, serviceUnavailable, internalServerError } = require('../../utils/httpStatusCodes.utils');
 
 module.exports = {
     SERVICE_UNAVAILABLE: {
@@ -36,4 +36,11 @@ module.exports = {
             es: 'Se han perdido los parametros de configuracion',
         },
     },
+    ERROR_SERVER:{ 
+        code: internalServerError,
+        message: {
+            en: 'Internal server error', 
+            es: 'Error interno de servidor',
+        }
+    }
 };

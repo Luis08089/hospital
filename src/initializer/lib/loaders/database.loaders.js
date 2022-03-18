@@ -41,7 +41,7 @@ module.exports.init = ({
     MONGO_HOST,
 }) => {
     if(MONGO_IS_ENABLED) {
-      const mongoInstance = mongoose.createConnection(MONGO_HOST,{
+      const mongoInstance = mongoose.createConnection(MONGO_HOST,{  
         useNewUrlParser: true,
         keepAlive: true,
         w: 'majority',

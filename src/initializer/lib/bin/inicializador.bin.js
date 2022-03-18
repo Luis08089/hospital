@@ -2,13 +2,16 @@ const express = require('express');
 const loaders = require('../loaders/index.loaders');
 const milddlewares = require('../../../shared/Middlewares/index.middlewares');
 const gracefulShutdown = require('../../../shared/utils/gracefulShutdown.utils');
+const {DB} = require('../../../config/index');
+const {APP} = require('../../../config/index');
 const logger = require('../../../shared/lib/winston/logger.winston');
 
 module.exports.Start = ({
     ROUTES_FOLDER = 'routes',
-    APP_PORT = 1338,
+    APP_PORT = APP.PORT,
     MONGO_IS_ENABLED = true,
-    MONGO_HOST = 'mongodb://localhost:27017',
+    MONGO_HOST = `mongodb://${DB.USER}:${DB.PASSWORD}@${DB.HOST}:${DB.PORT}/${DB.DATABASE_NAME}?authSource=${DB.USER}`,
+    //mongodb://admin:pancho97@localhost:27017/hospitals?authSource=admin
 }) => {
     const applicationServer = express();
 

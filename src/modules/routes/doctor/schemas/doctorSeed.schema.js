@@ -1,7 +1,4 @@
 const mongoose = require('mongoose');
-const {getClients} = require('../../../../initializer/lib/loaders/database.loaders');
-
-const conn = getClients().mongoInstance;
 
 const doctorSchema = mongoose.Schema({
   firstName: { type: "string", required: true },
@@ -29,6 +26,6 @@ const doctorSchema = mongoose.Schema({
   userName: { type: "string", required: true },
 }, {versionKey: false});
 
-const Doctor = conn.model("doctor", doctorSchema);
+const Doctor = mongoose.model("doctorSeed", doctorSchema);
 
 module.exports = { Doctor };

@@ -15,9 +15,12 @@ module.exports = ({ data, error, lang = DEFAULT_LANG}) => {
    if (error instanceof GenericError) {
        result.code = error.code;
        result.message = error.genericMessage[lang];
+       result.data = error.data;
        status = error.httpStatus;
    } else if (error instanceof Error) {
        result.code = 0;
+       result.message = error.message;
+       
        status = internalServerError;
    }
 
