@@ -5,10 +5,12 @@ const {hashPassword, compare} = require('../../../../shared/lib/bcrypt/encrypt')
 
 
 async function doctorCreate(body){
-    let pass = hashPassword(body.password);
+    let pass = await hashPassword(body.password);
     let doctor = new Doctor({
         firstName: body.first_name, 
-        lastName: body.last_name, 
+        lastName: body.last_name,
+        cedule_number: body.cedule_number,
+        speciality: body.speciality, 
         email: body.email, 
         phone_number: body.phone_number, 
         password: pass, 
@@ -21,6 +23,12 @@ async function doctorCreate(body){
     return await doctor.save();
 }
 
+async function getDoctor(data){ 
+    let doc = Doctor.find({"email": data});
+    return doc;
+}
+
 module.exports = {
-    doctorCreate
+    doctorCreate,
+    getDoctor
 }
