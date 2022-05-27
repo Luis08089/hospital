@@ -2,6 +2,7 @@ const { Router } = require("express");
 
 const validateRequestMiddleware = require("../../../shared/Middlewares/validateRequest.middleware");
 const doctorSchema = require("./doctor.schemaValid");
+const emailSchema = require("./doctor.emailValid");
 const docCont = require("./doctorControler.doctor");
 
 module.exports = () => {
@@ -15,7 +16,7 @@ module.exports = () => {
 
   router.get(
     "/",
-    validateRequestMiddleware(doctorSchema),
+    validateRequestMiddleware(emailSchema),
     docCont.getDoctor)
 
   return router;

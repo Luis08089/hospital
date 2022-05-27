@@ -24,7 +24,7 @@ async function doctorCreate(body){
 }
 
 async function getDoctor(data){ 
-    let doc = Doctor.find({"email": data});
+    let doc = Doctor.find({"email": data.email}, {"_id": false});
     return doc;
 }
 

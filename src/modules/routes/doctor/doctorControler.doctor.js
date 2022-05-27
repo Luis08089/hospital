@@ -18,7 +18,7 @@ let doc, getDoc;
 
     async function getDoctor(request, response, next) {
       try{ 
-        getDoc = await dao.getDoctor(request.headers);
+        getDoc = await dao.getDoctor(request.body);
         if(getDoc) response.json(getDoc);
       } catch(e) { 
         next(e)
